@@ -11,22 +11,26 @@ import RxSwift
 
 class RedirectViewController: UIViewController {
 
-    let dataProvider = ConfigurationDataProvider()
-    let disposeBag = DisposeBag()
+    private var viewModel: RedirectViewModel!
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataProvider.loadConfiguration()
-            .subscribe(onNext: configurationLoaded(_:),
-                       onError:configurationLoadError(_:))
+        viewModel = RedirectViewModel(ConfigurationDataProvider())
+        bind()
+    }
+    
+    private func bind() {
+        viewModel.dataIsReady
+            .do(onNext: navigateToNextScreen(_:))
+            .drive()
             .disposed(by: disposeBag)
     }
     
-    private func configurationLoaded(_ configuration: APIConfiguration) {
-        print(String(describing: configuration.toJSON()))
-    }
-    
-    private func configurationLoadError(_ error: Error) {
-        print(error.localizedDescription)
+    private func navigateToNextScreen(_ navigate: Bool) {
+        guard navigate else {
+            return
+        }
+        print("navigate to next screen")
     }
 }
