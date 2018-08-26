@@ -10,6 +10,10 @@ target 'ios-mvvm-pattern-example' do
 
   # Pods for ios-mvvm-pattern-example
     pod 'Alamofire', '~> 4.7'
-    pod 'AlamofireObjectMapper', '~> 5.0'
+    pod 'Kingfisher', '~> 4.0'
+    pod 'ObjectMapper', '~> 3.3'
+    pod 'RxSwift',    '~> 4.0'
+    pod 'RxCocoa',    '~> 4.0'
+    pod 'RxAlamofire'
 
 end

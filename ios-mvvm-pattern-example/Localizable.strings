@@ -1,0 +1,17 @@
+/* 
+  Localizable..strings
+  ios-mvp-pattern-example
+
+  Created by Ivan Podibka on 16/08/2018.
+  Copyright © 2018 Ivan Podibka. All rights reserved.
+*/
+
+"general_title" = "General";
+"overview_title" = "Overview";
+"genres_title" = "Genres";
+"spoken_languages_title" = "Spoken Languages";
+"production_companies" = "Production Companies";
+"minutes" = "min";
+"search" = "Search";
+"unable_to_execute_query" = "Unable to execute search query";
+"found_movies" = "Found %@ movies.";
