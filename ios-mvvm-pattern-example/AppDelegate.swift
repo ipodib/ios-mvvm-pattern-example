@@ -20,3 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension UIApplication {
+    
+    func defaultAppDelegate() -> AppDelegate {
+        return delegate as! AppDelegate
+    }
+    
+}

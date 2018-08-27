@@ -36,7 +36,7 @@ class DataProvider {
     ///   - request: Request to be executed.
     ///   - completion: Completion handler with response object.
     func execute<T : Mappable>(request: URLRequestConvertible) -> Observable<T> {
-        return observable(with: request)
+        return observable(for: request)
             .json()
             .map { json -> T in
                 guard let response = Mapper<T>().map(JSONObject: json) else {
@@ -52,7 +52,7 @@ class DataProvider {
     ///   - request: Request to be called.
     ///   - completion: Completion handler with response list.
     func execute<T : Mappable>(request: URLRequestConvertible) -> Observable<[T]> {
-        return observable(with: request)
+        return observable(for: request)
             .json()
             .map { json -> [T] in
                 guard let response = Mapper<T>().mapArray(JSONObject: json) else {
@@ -74,7 +74,7 @@ class DataProvider {
             .map { _ in Void() }
     }
     
-    private func observable(with request: URLRequestConvertible) -> Observable<DataRequest> {
+    private func observable(for request: URLRequestConvertible) -> Observable<DataRequest> {
         return sessionManager.rx
             .request(urlRequest: request)
             .observeOn(MainScheduler.instance)
