@@ -45,6 +45,12 @@
 		000CAFD921333C7B00970A9C /* TableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000CAFD121333C7B00970A9C /* TableViewSection.swift */; };
 		000CAFDA21333C7B00970A9C /* TableViewCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000CAFD221333C7B00970A9C /* TableViewCellItem.swift */; };
 		000CAFDC21333C9E00970A9C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000CAFDB21333C9E00970A9C /* Constants.swift */; };
+		007C6E32213379F400B75F36 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007C6E31213379F400B75F36 /* Bindable.swift */; };
+		007C6E3521337B2100B75F36 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007C6E3421337B2100B75F36 /* SearchViewModel.swift */; };
+		007C6E3721337B2B00B75F36 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007C6E3621337B2B00B75F36 /* SearchTableViewController.swift */; };
+		007C6E3A21337B4B00B75F36 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007C6E3921337B4B00B75F36 /* SearchResultTableViewCell.swift */; };
+		007C6E3C21337B6900B75F36 /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007C6E3B21337B6900B75F36 /* SearchResultViewModel.swift */; };
+		007C6E3F21337CBD00B75F36 /* SearchResultsCellItemConvertor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007C6E3E21337CBD00B75F36 /* SearchResultsCellItemConvertor.swift */; };
 		0098555E2133489000BE4AEF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0098555D2133489000BE4AEF /* Localizable.strings */; };
 		5BBE4B99B517D709276A8B18 /* Pods_ios_mvvm_pattern_example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7268BF57B168668C1776F1F /* Pods_ios_mvvm_pattern_example.framework */; };
 		D20C5172212D945500AF4F15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20C5171212D945500AF4F15 /* AppDelegate.swift */; };
@@ -103,6 +109,12 @@
 		000CAFD121333C7B00970A9C /* TableViewSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewSection.swift; sourceTree = "<group>"; };
 		000CAFD221333C7B00970A9C /* TableViewCellItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellItem.swift; sourceTree = "<group>"; };
 		000CAFDB21333C9E00970A9C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		007C6E31213379F400B75F36 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
+		007C6E3421337B2100B75F36 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		007C6E3621337B2B00B75F36 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
+		007C6E3921337B4B00B75F36 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
+		007C6E3B21337B6900B75F36 /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
+		007C6E3E21337CBD00B75F36 /* SearchResultsCellItemConvertor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsCellItemConvertor.swift; sourceTree = "<group>"; };
 		0098555D2133489000BE4AEF /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		AD24837BBD48345C61673818 /* Pods-ios-mvvm-pattern-example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-mvvm-pattern-example.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-mvvm-pattern-example/Pods-ios-mvvm-pattern-example.release.xcconfig"; sourceTree = "<group>"; };
 		D20C516E212D945500AF4F15 /* ios-mvvm-pattern-example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-mvvm-pattern-example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +163,7 @@
 		000CAF78213339F300970A9C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				007C6E3321337A9000B75F36 /* Search */,
 				000CAF8021333ADE00970A9C /* Redirect */,
 			);
 			path = ViewModel;
@@ -159,11 +172,13 @@
 		000CAF7921333A2400970A9C /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				007C6E402133837300B75F36 /* RxCocoa */,
 				000CAFCE21333C7B00970A9C /* Configurable Cell */,
 				000CAFC821333C7A00970A9C /* Extensions */,
 				000CAFCC21333C7B00970A9C /* Localization */,
 				000CAFCB21333C7A00970A9C /* Injector.swift */,
 				000CAFDB21333C9E00970A9C /* Constants.swift */,
+				007C6E31213379F400B75F36 /* Bindable.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -338,6 +353,49 @@
 				000CAFD221333C7B00970A9C /* TableViewCellItem.swift */,
 			);
 			path = "Configurable Cell";
+			sourceTree = "<group>";
+		};
+		0032407A2133AA2300F7CB97 /* Drivers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Drivers;
+			sourceTree = "<group>";
+		};
+		007C6E3321337A9000B75F36 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				0032407A2133AA2300F7CB97 /* Drivers */,
+				007C6E3D21337CB100B75F36 /* Convertor */,
+				007C6E3821337B2F00B75F36 /* Table View Cells */,
+				007C6E3421337B2100B75F36 /* SearchViewModel.swift */,
+				007C6E3B21337B6900B75F36 /* SearchResultViewModel.swift */,
+				007C6E3621337B2B00B75F36 /* SearchTableViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		007C6E3821337B2F00B75F36 /* Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				007C6E3921337B4B00B75F36 /* SearchResultTableViewCell.swift */,
+			);
+			path = "Table View Cells";
+			sourceTree = "<group>";
+		};
+		007C6E3D21337CB100B75F36 /* Convertor */ = {
+			isa = PBXGroup;
+			children = (
+				007C6E3E21337CBD00B75F36 /* SearchResultsCellItemConvertor.swift */,
+			);
+			path = Convertor;
+			sourceTree = "<group>";
+		};
+		007C6E402133837300B75F36 /* RxCocoa */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RxCocoa;
 			sourceTree = "<group>";
 		};
 		4547A82FD23F432DEC3210AB /* Frameworks */ = {
@@ -556,6 +614,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				007C6E3F21337CBD00B75F36 /* SearchResultsCellItemConvertor.swift in Sources */,
 				000CAFD921333C7B00970A9C /* TableViewSection.swift in Sources */,
 				000CAFA921333BFF00970A9C /* SearchDataProvider.swift in Sources */,
 				000CAFA521333BFF00970A9C /* SearchRouter.swift in Sources */,
@@ -570,9 +629,12 @@
 				000CAFD821333C7B00970A9C /* ConfigurableTableViewCell.swift in Sources */,
 				000CAFD321333C7B00970A9C /* UIImageView+ImageLoader.swift in Sources */,
 				000CAFD721333C7B00970A9C /* TableViewCellItemConverter.swift in Sources */,
+				007C6E3A21337B4B00B75F36 /* SearchResultTableViewCell.swift in Sources */,
 				000CAFC621333C3100970A9C /* FavoritesRepository.swift in Sources */,
 				000CAF8221333B0600970A9C /* RedirectViewModel.swift in Sources */,
 				000CAFB321333BFF00970A9C /* ProductionCountry.swift in Sources */,
+				007C6E3721337B2B00B75F36 /* SearchTableViewController.swift in Sources */,
+				007C6E3C21337B6900B75F36 /* SearchResultViewModel.swift in Sources */,
 				000CAFA421333BFF00970A9C /* MoviesRouter.swift in Sources */,
 				000CAFD521333C7B00970A9C /* Injector.swift in Sources */,
 				000CAFDC21333C9E00970A9C /* Constants.swift in Sources */,
@@ -582,6 +644,8 @@
 				000CAFA821333BFF00970A9C /* ConfigurationDataProvider.swift in Sources */,
 				000CAFAE21333BFF00970A9C /* APIConfiguration.swift in Sources */,
 				000CAFB221333BFF00970A9C /* SearchResult.swift in Sources */,
+				007C6E3521337B2100B75F36 /* SearchViewModel.swift in Sources */,
+				007C6E32213379F400B75F36 /* Bindable.swift in Sources */,
 				000CAFAB21333BFF00970A9C /* DataProvider.swift in Sources */,
 				000CAFC121333C3100970A9C /* CoreDataMapping.swift in Sources */,
 				000CAFA321333BFF00970A9C /* ImageQuality.swift in Sources */,

@@ -20,17 +20,24 @@ class RedirectViewController: UIViewController {
         bind()
     }
     
-    private func bind() {
+    private func navigateToNextScreen(_ navigate: Bool) {
+        guard navigate else {
+            return
+        }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let window = UIApplication.shared.defaultAppDelegate().window
+        window?.rootViewController = storyboard.instantiateInitialViewController()
+    }
+}
+
+extension RedirectViewController: Bindable {
+    
+    func bind() {
         viewModel.dataIsReady
             .do(onNext: navigateToNextScreen(_:))
             .drive()
             .disposed(by: disposeBag)
     }
     
-    private func navigateToNextScreen(_ navigate: Bool) {
-        guard navigate else {
-            return
-        }
-        print("navigate to next screen")
-    }
 }

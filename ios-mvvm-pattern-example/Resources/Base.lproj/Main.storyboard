@@ -11,7 +11,7 @@
         <!--Search-->
         <scene sceneID="vFl-GU-JwK">
             <objects>
-                <tableViewController id="rXU-0m-P3O" sceneMemberID="viewController">
+                <tableViewController id="rXU-0m-P3O" customClass="SearchTableViewController" customModule="ios_mvvm_pattern_example" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bbs-0i-mFx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,7 +41,7 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchResultTableViewCell" rowHeight="183" id="x3h-0l-LVW">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchResultTableViewCell" rowHeight="183" id="x3h-0l-LVW" customClass="SearchResultTableViewCell" customModule="ios_mvvm_pattern_example" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="73" width="375" height="183"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="x3h-0l-LVW" id="avL-Ev-sfa">
@@ -97,7 +97,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Search" id="JJt-GZ-3Hr"/>
                     <connections>
-                        <outlet property="searchTitleLabel" destination="Kju-5w-jdK" id="BmD-1e-SeE"/>
+                        <outlet property="searchTitleLabel" destination="Kju-5w-jdK" id="2xx-Oq-y3K"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NoV-Z3-2Jq" userLabel="First Responder" sceneMemberID="firstResponder"/>

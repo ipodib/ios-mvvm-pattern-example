@@ -14,7 +14,7 @@ class SearchResult: Mappable {
     var page: Int?
     var totalPages: Int?
     var totalResults: Int?
-    var results: [Movie]?
+    var results: [Movie]!
     
     required init?(map: Map) {
     }
