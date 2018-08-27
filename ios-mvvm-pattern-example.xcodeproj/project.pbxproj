@@ -58,6 +58,13 @@
 		D20C5179212D945800AF4F15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D20C5178212D945800AF4F15 /* Assets.xcassets */; };
 		D20C517C212D945800AF4F15 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D20C517A212D945800AF4F15 /* LaunchScreen.storyboard */; };
 		D20C518A212D96AD00AF4F15 /* ios_mvvm_pattern_exampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20C5189212D96AD00AF4F15 /* ios_mvvm_pattern_exampleTests.swift */; };
+		D20C51932134460A00AF4F15 /* MovieDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20C51922134460A00AF4F15 /* MovieDetailsTableViewController.swift */; };
+		D20C51972134464200AF4F15 /* MovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20C51962134464200AF4F15 /* MovieDetailsViewModel.swift */; };
+		D20C519A213446CF00AF4F15 /* MovieInfoDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20C5198213446CF00AF4F15 /* MovieInfoDetailsViewModel.swift */; };
+		D20C519B213446CF00AF4F15 /* GeneralMovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20C5199213446CF00AF4F15 /* GeneralMovieDetailsViewModel.swift */; };
+		D20C519E213447D800AF4F15 /* MovieDetailsCellItemConvertor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20C519D213447D800AF4F15 /* MovieDetailsCellItemConvertor.swift */; };
+		D20C51A22134485000AF4F15 /* TextContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20C51A02134485000AF4F15 /* TextContentTableViewCell.swift */; };
+		D20C51A32134485000AF4F15 /* GeneralMovieDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20C51A12134485000AF4F15 /* GeneralMovieDetailsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +133,13 @@
 		D20C5187212D96AD00AF4F15 /* ios-mvvm-pattern-exampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-mvvm-pattern-exampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D20C5189212D96AD00AF4F15 /* ios_mvvm_pattern_exampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_mvvm_pattern_exampleTests.swift; sourceTree = "<group>"; };
 		D20C518B212D96AE00AF4F15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D20C51922134460A00AF4F15 /* MovieDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsTableViewController.swift; sourceTree = "<group>"; };
+		D20C51962134464200AF4F15 /* MovieDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewModel.swift; sourceTree = "<group>"; };
+		D20C5198213446CF00AF4F15 /* MovieInfoDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieInfoDetailsViewModel.swift; sourceTree = "<group>"; };
+		D20C5199213446CF00AF4F15 /* GeneralMovieDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralMovieDetailsViewModel.swift; sourceTree = "<group>"; };
+		D20C519D213447D800AF4F15 /* MovieDetailsCellItemConvertor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsCellItemConvertor.swift; sourceTree = "<group>"; };
+		D20C51A02134485000AF4F15 /* TextContentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextContentTableViewCell.swift; sourceTree = "<group>"; };
+		D20C51A12134485000AF4F15 /* GeneralMovieDetailsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralMovieDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		D7268BF57B168668C1776F1F /* Pods_ios_mvvm_pattern_example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_mvvm_pattern_example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8D7F47C5BCF039E8BC7259F /* Pods-ios-mvvm-pattern-example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-mvvm-pattern-example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios-mvvm-pattern-example/Pods-ios-mvvm-pattern-example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,6 +177,7 @@
 		000CAF78213339F300970A9C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				D20C5191213445AC00AF4F15 /* Details */,
 				007C6E3321337A9000B75F36 /* Search */,
 				000CAF8021333ADE00970A9C /* Redirect */,
 			);
@@ -172,7 +187,6 @@
 		000CAF7921333A2400970A9C /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				007C6E402133837300B75F36 /* RxCocoa */,
 				000CAFCE21333C7B00970A9C /* Configurable Cell */,
 				000CAFC821333C7A00970A9C /* Extensions */,
 				000CAFCC21333C7B00970A9C /* Localization */,
@@ -355,17 +369,9 @@
 			path = "Configurable Cell";
 			sourceTree = "<group>";
 		};
-		0032407A2133AA2300F7CB97 /* Drivers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Drivers;
-			sourceTree = "<group>";
-		};
 		007C6E3321337A9000B75F36 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				0032407A2133AA2300F7CB97 /* Drivers */,
 				007C6E3D21337CB100B75F36 /* Convertor */,
 				007C6E3821337B2F00B75F36 /* Table View Cells */,
 				007C6E3421337B2100B75F36 /* SearchViewModel.swift */,
@@ -389,13 +395,6 @@
 				007C6E3E21337CBD00B75F36 /* SearchResultsCellItemConvertor.swift */,
 			);
 			path = Convertor;
-			sourceTree = "<group>";
-		};
-		007C6E402133837300B75F36 /* RxCocoa */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = RxCocoa;
 			sourceTree = "<group>";
 		};
 		4547A82FD23F432DEC3210AB /* Frameworks */ = {
@@ -458,6 +457,36 @@
 				D20C518B212D96AE00AF4F15 /* Info.plist */,
 			);
 			path = "ios-mvvm-pattern-exampleTests";
+			sourceTree = "<group>";
+		};
+		D20C5191213445AC00AF4F15 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				D20C519C213447BC00AF4F15 /* Convertor */,
+				D20C519F2134483100AF4F15 /* Table View Cells */,
+				D20C51922134460A00AF4F15 /* MovieDetailsTableViewController.swift */,
+				D20C51962134464200AF4F15 /* MovieDetailsViewModel.swift */,
+				D20C5199213446CF00AF4F15 /* GeneralMovieDetailsViewModel.swift */,
+				D20C5198213446CF00AF4F15 /* MovieInfoDetailsViewModel.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		D20C519C213447BC00AF4F15 /* Convertor */ = {
+			isa = PBXGroup;
+			children = (
+				D20C519D213447D800AF4F15 /* MovieDetailsCellItemConvertor.swift */,
+			);
+			path = Convertor;
+			sourceTree = "<group>";
+		};
+		D20C519F2134483100AF4F15 /* Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D20C51A12134485000AF4F15 /* GeneralMovieDetailsTableViewCell.swift */,
+				D20C51A02134485000AF4F15 /* TextContentTableViewCell.swift */,
+			);
+			path = "Table View Cells";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -587,19 +616,23 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ios-mvvm-pattern-example/Pods-ios-mvvm-pattern-example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -620,10 +653,14 @@
 				000CAFA521333BFF00970A9C /* SearchRouter.swift in Sources */,
 				000CAFB621333BFF00970A9C /* SpokenLanguage.swift in Sources */,
 				000CAFC721333C3100970A9C /* LocalDataStore.swift in Sources */,
+				D20C51972134464200AF4F15 /* MovieDetailsViewModel.swift in Sources */,
 				000CAFAA21333BFF00970A9C /* MoviesDataProvider.swift in Sources */,
 				000CAFC521333C3100970A9C /* CoreDataContainer.swift in Sources */,
 				000CAFC421333C3100970A9C /* StorageModel.xcdatamodeld in Sources */,
+				D20C51A32134485000AF4F15 /* GeneralMovieDetailsTableViewCell.swift in Sources */,
 				000CAFAF21333BFF00970A9C /* MovieDetails.swift in Sources */,
+				D20C519B213446CF00AF4F15 /* GeneralMovieDetailsViewModel.swift in Sources */,
+				D20C519A213446CF00AF4F15 /* MovieInfoDetailsViewModel.swift in Sources */,
 				000CAFD421333C7B00970A9C /* URL+ImageLoader.swift in Sources */,
 				000CAFC321333C3100970A9C /* NSManagedObjectContext+Create.swift in Sources */,
 				000CAFD821333C7B00970A9C /* ConfigurableTableViewCell.swift in Sources */,
@@ -631,10 +668,13 @@
 				000CAFD721333C7B00970A9C /* TableViewCellItemConverter.swift in Sources */,
 				007C6E3A21337B4B00B75F36 /* SearchResultTableViewCell.swift in Sources */,
 				000CAFC621333C3100970A9C /* FavoritesRepository.swift in Sources */,
+				D20C51932134460A00AF4F15 /* MovieDetailsTableViewController.swift in Sources */,
 				000CAF8221333B0600970A9C /* RedirectViewModel.swift in Sources */,
 				000CAFB321333BFF00970A9C /* ProductionCountry.swift in Sources */,
 				007C6E3721337B2B00B75F36 /* SearchTableViewController.swift in Sources */,
 				007C6E3C21337B6900B75F36 /* SearchResultViewModel.swift in Sources */,
+				D20C519E213447D800AF4F15 /* MovieDetailsCellItemConvertor.swift in Sources */,
+				D20C51A22134485000AF4F15 /* TextContentTableViewCell.swift in Sources */,
 				000CAFA421333BFF00970A9C /* MoviesRouter.swift in Sources */,
 				000CAFD521333C7B00970A9C /* Injector.swift in Sources */,
 				000CAFDC21333C9E00970A9C /* Constants.swift in Sources */,
