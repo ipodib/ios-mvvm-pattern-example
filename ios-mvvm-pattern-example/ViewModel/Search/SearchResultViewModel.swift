@@ -10,7 +10,7 @@ import Foundation
 
 class SearchResultViewModel: TableViewCellItem {
     
-    var id: Int?
+    var id: Int
     var posterPath: String?
     var title: String?
     var overview: String?

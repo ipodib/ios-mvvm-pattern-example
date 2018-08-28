@@ -7,11 +7,17 @@
 //
 
 import Foundation
+import RxDataSources
 
-class TableViewSection {
+struct TableViewSection: SectionModelType {
     
-    let name: String
-    let items: [TableViewCellItem]
+    var name: String
+    var items: [TableViewCellItem]
+    
+    init(original: TableViewSection, items: [TableViewCellItem]) {
+        self = original
+        self.items = items
+    }
     
     init(_ name: String, _ items: [TableViewCellItem]) {
         self.name = name

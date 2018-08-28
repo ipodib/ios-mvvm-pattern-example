@@ -12,12 +12,23 @@ import RxCocoa
 
 class MovieDetailsViewModel {
     
-    let results: Driver<[TableViewSection]>
+    let refresh: Variable<Bool>
+    let isDataReady: Driver<Bool>
+    let isLoading: Driver<Bool>
+    let sectionsData: Driver<[TableViewSection]>
     
     init(_ dataProvider: MoviesDataProvider, _ movieId: Int) {
-        results = dataProvider.loadMovieDetails(with: movieId)
-            .map { MovieDetailsCellItemConvertor().convert(from: $0) }
-            .asDriver(onErrorJustReturn: [])
+        refresh = Variable(true)
+        sectionsData = refresh
+            .asDriver()
+            .filter { $0 == true }
+            .flatMap { _ in
+                dataProvider.loadMovieDetails(with: movieId)
+                    .map { MovieDetailsCellItemConvertor().convert(from: $0) }
+                    .asDriver(onErrorJustReturn: [])
+            }
+        isDataReady = sectionsData.map { _ in true }
+        isLoading = sectionsData.map { _ in false }.startWith(true)
     }
     
 }
