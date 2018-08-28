@@ -86,7 +86,6 @@
                                     <outlet property="descriptionLabel" destination="7qw-jY-YXs" id="aek-NA-Zfo"/>
                                     <outlet property="posterImageView" destination="RdH-w2-lWe" id="NYG-DL-E4y"/>
                                     <outlet property="titleLabel" destination="JA7-6w-7UY" id="f6j-F6-yTL"/>
-                                    <segue destination="yrl-8Q-LFr" kind="show" identifier="showMovieDetailsSegue" id="cDp-D6-Eg0"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -98,16 +97,17 @@
                     <navigationItem key="navigationItem" title="Search" id="JJt-GZ-3Hr"/>
                     <connections>
                         <outlet property="searchTitleLabel" destination="Kju-5w-jdK" id="2xx-Oq-y3K"/>
+                        <segue destination="yrl-8Q-LFr" kind="show" identifier="showMovieDetailsSegue" id="YVa-uE-KpU"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NoV-Z3-2Jq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1916" y="144.3778110944528"/>
+            <point key="canvasLocation" x="1742" y="144"/>
         </scene>
         <!--Details-->
         <scene sceneID="s4f-2o-CQJ">
             <objects>
-                <tableViewController title="Details" id="yrl-8Q-LFr" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MovieDetailsTableViewController" title="Details" id="yrl-8Q-LFr" customClass="MovieDetailsTableViewController" customModule="ios_mvvm_pattern_example" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="U5J-S9-GRi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -118,7 +118,7 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GeneralMovieDetailsTableViewCell" rowHeight="183" id="oXx-Fa-vyh">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GeneralMovieDetailsTableViewCell" rowHeight="183" id="oXx-Fa-vyh" customClass="GeneralMovieDetailsTableViewCell" customModule="ios_mvvm_pattern_example" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="55.5" width="375" height="183"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oXx-Fa-vyh" id="iW8-Gn-rJe">
@@ -232,7 +232,7 @@
                                     <outlet property="titleLabel" destination="HBV-AK-Wwz" id="Gbr-gM-v0z"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TextContentTableViewCell" textLabel="qJD-mP-WVh" style="IBUITableViewCellStyleDefault" id="jLp-Vg-681">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TextContentTableViewCell" textLabel="qJD-mP-WVh" style="IBUITableViewCellStyleDefault" id="jLp-Vg-681" customClass="TextContentTableViewCell" customModule="ios_mvvm_pattern_example" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="238.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jLp-Vg-681" id="3HF-6u-bIL" customClass="TextContentTableViewCell" customModule="ios_mvvm_pattern_example" customModuleProvider="target">
@@ -256,7 +256,7 @@
                             <outlet property="delegate" destination="yrl-8Q-LFr" id="CIG-H5-gT7"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Title" id="HmF-VL-CiW">
+                    <navigationItem key="navigationItem" title="Details" id="HmF-VL-CiW">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="rUg-sp-u4M">
                             <connections>
                                 <action selector="saveButtonPressed:" destination="yrl-8Q-LFr" id="SSc-UO-oE3"/>
@@ -266,7 +266,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vCL-VE-UQa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2749.5999999999999" y="143.47826086956522"/>
+            <point key="canvasLocation" x="2492" y="143"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="V0H-9S-lFg">
@@ -279,7 +279,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="rXU-0m-P3O" kind="relationship" relationship="rootViewController" id="2DF-z3-GXU"/>
+                        <segue destination="rXU-0m-P3O" kind="relationship" relationship="rootViewController" id="r3H-q2-zNz"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F7R-Hq-PpN" userLabel="First Responder" sceneMemberID="firstResponder"/>

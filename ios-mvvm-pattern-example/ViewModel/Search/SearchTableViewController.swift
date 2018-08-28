@@ -64,6 +64,25 @@ extension SearchTableViewController: Bindable {
                         cell.configure(element)
             }
             .disposed(by: disposeBag)
+        
+        // bind selection
+        tableView.rx.modelSelected(SearchResultViewModel.self)
+            .subscribe(onNext: navigateToDetailsScreen(_:))
+            .disposed(by: disposeBag)
+    }
+
+}
+
+// MARK: - Navigation
+private extension SearchTableViewController {
+    
+    func navigateToDetailsScreen(_ item: SearchResultViewModel) {
+        guard let viewController = MovieDetailsTableViewController.instantiateFromStoryboard() else {
+            return
+        }
+        
+        viewController.movieId = item.id
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
 }
