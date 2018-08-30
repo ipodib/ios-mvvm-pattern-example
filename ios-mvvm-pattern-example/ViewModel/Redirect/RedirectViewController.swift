@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class RedirectViewController: UIViewController {
 
@@ -36,7 +37,9 @@ class RedirectViewController: UIViewController {
 extension RedirectViewController: Bindable {
     
     func bind() {
-        viewModel.dataIsReady
+        let input = RedirectViewModel.Input(load: Driver.just(()))
+        let output = viewModel.transform(input: input)
+        output.dataIsready
             .do(onNext: navigateToNextScreen(_:))
             .drive()
             .disposed(by: disposeBag)

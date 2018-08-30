@@ -10,20 +10,29 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class RedirectViewModel {
+class RedirectViewModel: ViewModelType {
     
-    private(set) var dataIsReady: Driver<Bool>!
-    
-    init(_ dataProvider: ConfigurationDataProvider) {
-        dataIsReady = provideLoadingDriver(dataProvider)
+    struct Input {
+        let load: Driver<Void>
     }
     
-    private func provideLoadingDriver(_ dataProvider: ConfigurationDataProvider) -> Driver<Bool> {
-        return dataProvider.loadConfiguration()
+    struct Output {
+        let dataIsready: Driver<Bool>
+    }
+    
+    private let dataProvider: ConfigurationDataProvider
+    
+    init(_ dataProvider: ConfigurationDataProvider) {
+        self.dataProvider = dataProvider
+    }
+    
+    func transform(input: Input) -> Output {
+        let loader = dataProvider.loadConfiguration()
             .do(onNext: configurationLoaded(_:))
             .map { _ in true }
             .asDriver(onErrorJustReturn: false)
             .startWith(false)
+        return Output(dataIsready: input.load.flatMapLatest { loader })
     }
     
     private func configurationLoaded(_ config: APIConfiguration) {

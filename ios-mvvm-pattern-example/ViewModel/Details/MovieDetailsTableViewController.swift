@@ -47,51 +47,39 @@ class MovieDetailsTableViewController: UITableViewController {
 extension MovieDetailsTableViewController: Bindable {
     
     func bind() {
-        // bind result to table view
-        viewModel.sectionsData
+        let load = Driver.just(())
+        let refresh = refresher.rx.controlEvent(.valueChanged).asDriver().map { _ in () }
+        let addToFavorites = addToFavoritesButton.rx.tap.asDriver()
+        let removeFromFavorites = removeFromFavoritesButton.rx.tap.asDriver()
+        
+        let input = MovieDetailsViewModel.Input(load: load,
+                                                refresh: refresh,
+                                                addTofavorites: addToFavorites,
+                                                removeFromFavorites: removeFromFavorites)
+        let output = viewModel.transform(input: input)
+        
+        output.results
             .asObservable()
             .bind(to: tableView.rx.items(dataSource: tableDataSource()))
             .disposed(by: disposeBag)
         
-        // stop or start refreshing bind
-        viewModel.isDataReady
-            .asObservable()
-            .map { !$0 }
-            .bind(to: self.refresher.rx.isRefreshing)
-            .disposed(by: disposeBag)
-        
-        // start refreshing bind
-        refreshControl?.rx
-            .controlEvent(.valueChanged)
-            .map { _ in self.refresher.isRefreshing }
-            .bind(to: viewModel.refresh)
-            .disposed(by: disposeBag)
-        
-        // buttons binding
-        addToFavoritesButton.rx.tap
-            .do(onNext:{[weak self] _ in
-                self?.viewModel.addToFavorites()}
-            )
-            .subscribe()
-            .disposed(by: disposeBag)
-        
-        removeFromFavoritesButton.rx.tap
-            .do(onNext:{[weak self] _ in
-                self?.viewModel.removeFromFavorites()}
-            )
-            .subscribe()
-            .disposed(by: disposeBag)
-        
-        viewModel.isFavorite
-            .asDriver()
-            .do(onNext: {[weak self] favorite in
-                self?.navigationItem.rightBarButtonItem = favorite ?
-                    self?.removeFromFavoritesButton :
-                    self?.addToFavoritesButton
-            })
+        output.addedToFavorites
             .drive()
             .disposed(by: disposeBag)
         
+        output.removeFromFavorites
+            .drive()
+            .disposed(by: disposeBag)
+        
+        output.isFavorite
+            .asDriver()
+            .do(onNext: {
+                self.navigationItem.rightBarButtonItem = $0 ?
+                    self.removeFromFavoritesButton :
+                    self.addToFavoritesButton
+            })
+            .drive()
+            .disposed(by: disposeBag)
     }
     
 }
