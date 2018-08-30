@@ -48,7 +48,7 @@ extension MovieDetailsTableViewController: Bindable {
     
     func bind() {
         let load = Driver.just(())
-        let refresh = refresher.rx.controlEvent(.valueChanged).asDriver().map { _ in () }
+        let refresh = refresher.rx.controlEvent(.valueChanged).asDriver()
         let addToFavorites = addToFavoritesButton.rx.tap.asDriver()
         let removeFromFavorites = removeFromFavoritesButton.rx.tap.asDriver()
         
