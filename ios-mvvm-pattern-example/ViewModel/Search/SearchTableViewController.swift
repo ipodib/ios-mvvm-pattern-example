@@ -46,25 +46,20 @@ class SearchTableViewController: UITableViewController {
 extension SearchTableViewController: Bindable {
     
     func bind() {
-        // bind search text change
-        searchController.searchBar.rx.text
-            .asDriver()
-            .drive(viewModel.searchQuery)
-            .disposed(by: disposeBag)
+        let input = SearchViewModel.Input(query: searchController.searchBar.rx.text)
+        let output = viewModel.transform(input: input)
         
-        // bind label update
-        viewModel.foundMovies
-            .drive(searchTitleLabel.rx.text)
-            .disposed(by: disposeBag)
-        
-        // bind table view cells
-        viewModel.results
+        output.results
             .asObservable()
             .bind(to: tableView.rx
                 .items(cellIdentifier: SearchResultTableViewCell.cellIdentifier,
                        cellType: SearchResultTableViewCell.self)) { (row, element, cell) in
                         cell.configure(element)
             }
+            .disposed(by: disposeBag)
+        
+        output.foundMovies
+            .drive(searchTitleLabel.rx.text)
             .disposed(by: disposeBag)
         
         // bind selection
