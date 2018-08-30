@@ -22,6 +22,7 @@ class MovieDetailsViewModel: ViewModelType {
     struct Output {
         let isFavorite: Variable<Bool>
         let results: Driver<[TableViewSection]>
+        let dataIsReady: Driver<Bool>
         let addedToFavorites: Driver<Void>
         let removeFromFavorites: Driver<Void>
     }
@@ -42,12 +43,16 @@ class MovieDetailsViewModel: ViewModelType {
     func transform(input: Input) -> Output {
         let loader = input.load.flatMapLatest(movieDetailsDriver)
         let refresh = input.refresh.flatMapLatest(movieDetailsDriver)
+        let data = Driver.merge([loader, refresh])
         
         let addedToFavorites = input.addTofavorites.do(onNext: addToFavorites)
         let removedFromFavorites = input.removeFromFavorites.do(onNext: removeFromFavorites)
         
+        let dataIsReady = data.map { _ in true }
+        
         return Output(isFavorite: isFavorite,
-                      results: Driver.merge([loader, refresh]),
+                      results: data,
+                      dataIsReady: dataIsReady,
                       addedToFavorites: addedToFavorites,
                       removeFromFavorites: removedFromFavorites)
     }

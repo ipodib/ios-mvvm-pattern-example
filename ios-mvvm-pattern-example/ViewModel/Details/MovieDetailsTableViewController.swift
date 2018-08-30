@@ -80,6 +80,12 @@ extension MovieDetailsTableViewController: Bindable {
             })
             .drive()
             .disposed(by: disposeBag)
+        
+        output.dataIsReady
+            .asObservable()
+            .map { !$0 }
+            .bind(to: refresher.rx.isRefreshing)
+            .disposed(by: disposeBag)
     }
     
 }
