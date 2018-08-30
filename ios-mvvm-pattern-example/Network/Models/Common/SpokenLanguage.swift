@@ -15,6 +15,9 @@ class SpokenLanguage: Mappable {
     var name: String?
     var iso639_1: String?
     
+    init() {
+    }
+    
     required init?(map: Map) {
     }
     
@@ -25,12 +28,23 @@ class SpokenLanguage: Mappable {
     
 }
 
-extension SpokenLanguage: CoreDataMapping {
+extension SpokenLanguage: ToManagedObjectMapping {
     
-    func mapToManagedObject(with context: NSManagedObjectContext) -> CRSpokenLanguage {
+    func asManagedObject(with context: NSManagedObjectContext) -> CRSpokenLanguage {
         let object: CRSpokenLanguage = context.insertObject()
         object.name = name
         object.iso639_1 = name
+        return object
+    }
+    
+}
+
+extension CRSpokenLanguage: FromManagedObjectMapping {
+    
+    func asMappable() -> SpokenLanguage {
+        let object = SpokenLanguage()
+        object.name = name
+        object.iso639_1 = iso639_1
         return object
     }
     

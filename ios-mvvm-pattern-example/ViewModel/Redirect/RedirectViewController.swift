@@ -11,12 +11,14 @@ import RxSwift
 
 class RedirectViewController: UIViewController {
 
+    var injector = Injector()
+    
     private var viewModel: RedirectViewModel!
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = RedirectViewModel(ConfigurationDataProvider())
+        viewModel = RedirectViewModel(injector.provideConfigurationDataProvider())
         bind()
     }
     

@@ -38,6 +38,9 @@ class MovieDetails: Mappable {
     var voteAverage: Double?
     var voteCount: Int?
     
+    init() {
+    }
+    
     required init?(map: Map) {
     }
     
@@ -71,12 +74,12 @@ class MovieDetails: Mappable {
     
 }
 
-extension MovieDetails: CoreDataMapping {
+extension MovieDetails: ToManagedObjectMapping {
     
-    func mapToManagedObject(with context: NSManagedObjectContext) -> CRMovieDetails {
+    func asManagedObject(with context: NSManagedObjectContext) -> CRMovieDetails {
         let object: CRMovieDetails = context.insertObject()
         object.id = Double(id)
-        object.belongsToCollection = belongsToCollection?.mapToManagedObject(with: context)
+        object.belongsToCollection = belongsToCollection?.asManagedObject(with: context)
         object.budget = Double(budget ?? 0)
         object.homepage = homepage
         object.imdbId = Double(imdbId ?? 0)
@@ -95,10 +98,44 @@ extension MovieDetails: CoreDataMapping {
         object.voteAverage = voteAverage ?? 0
         object.voteCount = Double(voteCount ?? 0)
         
-        genres?.forEach { object.addToGenres($0.mapToManagedObject(with: context)) }
-        productionCompanies?.forEach { object.addToProductionCompanies($0.mapToManagedObject(with: context)) }
-        productionCountries?.forEach { object.addToProductionCountries($0.mapToManagedObject(with: context)) }
-        spokenLanguages?.forEach { object.addToSpokenLanguages($0.mapToManagedObject(with: context)) }
+        genres?.forEach { object.addToGenres($0.asManagedObject(with: context)) }
+        productionCompanies?.forEach { object.addToProductionCompanies($0.asManagedObject(with: context)) }
+        productionCountries?.forEach { object.addToProductionCountries($0.asManagedObject(with: context)) }
+        spokenLanguages?.forEach { object.addToSpokenLanguages($0.asManagedObject(with: context)) }
+        
+        return object
+    }
+    
+}
+
+extension CRMovieDetails: FromManagedObjectMapping {
+    
+    func asMappable() -> MovieDetails {
+        let object = MovieDetails()
+        object.id = Int(id)
+        object.belongsToCollection = belongsToCollection?.asMappable()
+        object.budget = Int(budget)
+        object.homepage = homepage
+        object.imdbId = Int(imdbId)
+        object.originalLanguage = originalLanguage
+        object.originalTitle = originalTitle
+        object.overview = overview
+        object.popularity = popularity
+        object.posterPath = posterPath
+        object.releaseDate = releaseDete
+        object.revenue = revenue
+        object.runtime = Int(runtime)
+        object.status = status
+        object.tagline = tagline
+        object.title = title
+        object.video = video
+        object.voteAverage = voteAverage
+        object.voteCount = Int(voteCount)
+        
+        object.genres = genres?.allObjects as? [GenreDetails]
+        object.productionCompanies = productionCompanies?.allObjects as? [ProductionCompany]
+        object.productionCountries = productionCountries?.allObjects as? [ProductionCountry]
+        object.spokenLanguages = spokenLanguages?.allObjects as? [SpokenLanguage]
         
         return object
     }

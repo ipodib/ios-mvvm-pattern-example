@@ -12,6 +12,8 @@ import RxCocoa
 
 class SearchTableViewController: UITableViewController {
 
+    var injector = Injector()
+    
     @IBOutlet private weak var searchTitleLabel: UILabel!
     
     private var viewModel: SearchViewModel!
@@ -25,7 +27,7 @@ class SearchTableViewController: UITableViewController {
         tableView.dataSource = nil
         
         configureSearchController()
-        viewModel = SearchViewModel(SearchDataProvider())
+        viewModel = SearchViewModel(injector.providerSearchDataProvider())
         bind()
     }
     

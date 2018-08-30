@@ -14,8 +14,11 @@ import RxDataSources
 class MovieDetailsTableViewController: UITableViewController {
 
     var movieId: Int!
+    var injector = Injector()
     
-    private let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    @IBOutlet private weak var addToFavoritesButton: UIBarButtonItem!
+    @IBOutlet private weak var removeFromFavoritesButton: UIBarButtonItem!
+    
     private let refresher = UIRefreshControl()
     private let disposeBag = DisposeBag()
     private var viewModel: MovieDetailsViewModel!
@@ -32,12 +35,11 @@ class MovieDetailsTableViewController: UITableViewController {
         tableView.delegate = nil
         tableView.dataSource = nil
         
-        viewModel = MovieDetailsViewModel(MoviesDataProvider(), movieId)
+        viewModel = MovieDetailsViewModel(MoviesDataProvider(), movieId, injector.provideFavoritesRepository())
         bind()
     }
 
     private func configureView() {
-        tableView.backgroundView = activityIndicator
         refreshControl = refresher
     }
 }
@@ -58,18 +60,38 @@ extension MovieDetailsTableViewController: Bindable {
             .bind(to: self.refresher.rx.isRefreshing)
             .disposed(by: disposeBag)
         
-        // map activity indicator animation
-        viewModel.isLoading
-            .asObservable()
-            .bind(to: activityIndicator.rx.isAnimating)
-            .disposed(by: disposeBag)
-        
         // start refreshing bind
         refreshControl?.rx
             .controlEvent(.valueChanged)
             .map { _ in self.refresher.isRefreshing }
             .bind(to: viewModel.refresh)
             .disposed(by: disposeBag)
+        
+        // buttons binding
+        addToFavoritesButton.rx.tap
+            .do(onNext:{[weak self] _ in
+                self?.viewModel.addToFavorites()}
+            )
+            .subscribe()
+            .disposed(by: disposeBag)
+        
+        removeFromFavoritesButton.rx.tap
+            .do(onNext:{[weak self] _ in
+                self?.viewModel.removeFromFavorites()}
+            )
+            .subscribe()
+            .disposed(by: disposeBag)
+        
+        viewModel.isFavorite
+            .asDriver()
+            .do(onNext: {[weak self] favorite in
+                self?.navigationItem.rightBarButtonItem = favorite ?
+                    self?.removeFromFavoritesButton :
+                    self?.addToFavoritesButton
+            })
+            .drive()
+            .disposed(by: disposeBag)
+        
     }
     
 }
