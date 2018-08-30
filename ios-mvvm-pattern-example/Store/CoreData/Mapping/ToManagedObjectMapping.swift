@@ -8,9 +8,10 @@
 
 import Foundation
 import CoreData
+import ObjectMapper
 
-protocol CoreDataMapping {
+protocol ToManagedObjectMapping {
     associatedtype T: NSManagedObject
     
-    func mapToManagedObject(with context: NSManagedObjectContext) -> T
+    func asManagedObject(with context: NSManagedObjectContext) -> T
 }

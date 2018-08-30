@@ -256,15 +256,15 @@
                             <outlet property="delegate" destination="yrl-8Q-LFr" id="CIG-H5-gT7"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Details" id="HmF-VL-CiW">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="rUg-sp-u4M">
-                            <connections>
-                                <action selector="saveButtonPressed:" destination="yrl-8Q-LFr" id="SSc-UO-oE3"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Details" id="HmF-VL-CiW"/>
+                    <connections>
+                        <outlet property="addToFavoritesButton" destination="JRz-9b-IMO" id="bjZ-Jt-C2M"/>
+                        <outlet property="removeFromFavoritesButton" destination="vBC-1P-VOW" id="lcG-7f-faV"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vCL-VE-UQa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <barButtonItem systemItem="save" id="JRz-9b-IMO"/>
+                <barButtonItem systemItem="trash" id="vBC-1P-VOW"/>
             </objects>
             <point key="canvasLocation" x="2492" y="143"/>
         </scene>

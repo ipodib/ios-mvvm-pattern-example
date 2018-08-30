@@ -22,4 +22,8 @@ class Injector {
         return SearchDataProvider()
     }
     
+    func provideFavoritesRepository() -> FavoritesRepository {
+        return FavoritesRepository(container: CoreDataContainer.default)
+    }
+    
 }

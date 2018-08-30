@@ -17,6 +17,9 @@ class MovieCollection: Mappable {
     var posterPath: String?
     var backdropPath: String?
     
+    init() {
+    }
+    
     required init?(map: Map) {
     }
     
@@ -28,11 +31,24 @@ class MovieCollection: Mappable {
     
 }
 
-extension MovieCollection: CoreDataMapping {
+extension MovieCollection: ToManagedObjectMapping {
     
-    func mapToManagedObject(with context: NSManagedObjectContext) -> CRMovieCollection {
+    func asManagedObject(with context: NSManagedObjectContext) -> CRMovieCollection {
         let object: CRMovieCollection = context.insertObject()
         object.id = Double(id)
+        object.name = name
+        object.posterPath = posterPath
+        object.backdropPath = backdropPath
+        return object
+    }
+    
+}
+
+extension CRMovieCollection: FromManagedObjectMapping {
+    
+    func asMappable() -> MovieCollection {
+        let object = MovieCollection()
+        object.id = Int(id)
         object.name = name
         object.posterPath = posterPath
         object.backdropPath = backdropPath

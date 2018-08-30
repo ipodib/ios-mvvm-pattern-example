@@ -15,6 +15,9 @@ class GenreDetails: Mappable {
     var id: Int!
     var name: String?
     
+    init() {
+    }
+    
     required init?(map: Map) {
     }
     
@@ -25,11 +28,22 @@ class GenreDetails: Mappable {
     
 }
 
-extension GenreDetails: CoreDataMapping {
+extension GenreDetails: ToManagedObjectMapping {
     
-    func mapToManagedObject(with context: NSManagedObjectContext) -> CRGenreDetails {
+    func asManagedObject(with context: NSManagedObjectContext) -> CRGenreDetails {
         let object: CRGenreDetails = context.insertObject()
         object.id = Double(id)
+        object.name = name
+        return object
+    }
+    
+}
+
+extension CRGenreDetails: FromManagedObjectMapping {
+    
+    func asMappable() -> GenreDetails {
+        let object = GenreDetails()
+        object.id = Int(id)
         object.name = name
         return object
     }

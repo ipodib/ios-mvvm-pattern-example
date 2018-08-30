@@ -17,8 +17,10 @@ class ProductionCompany: Mappable {
     var name: String?
     var originCountry: String?
     
+    init() {
+    }
+    
     required init?(map: Map) {
-        
     }
     
     func mapping(map: Map) {
@@ -29,11 +31,24 @@ class ProductionCompany: Mappable {
     }
 }
 
-extension ProductionCompany: CoreDataMapping {
+extension ProductionCompany: ToManagedObjectMapping {
     
-    func mapToManagedObject(with context: NSManagedObjectContext) -> CRProductionCompany {
+    func asManagedObject(with context: NSManagedObjectContext) -> CRProductionCompany {
         let object: CRProductionCompany = context.insertObject()
         object.id = Double(id)
+        object.logoPath = logoPath
+        object.name = name
+        object.originCountry = originCountry
+        return object
+    }
+    
+}
+
+extension CRProductionCompany: FromManagedObjectMapping {
+    
+    func asMappable() -> ProductionCompany {
+        let object = ProductionCompany()
+        object.id = Int(id)
         object.logoPath = logoPath
         object.name = name
         object.originCountry = originCountry
