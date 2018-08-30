@@ -17,7 +17,7 @@ class RedirectViewModel: ViewModelType {
     }
     
     struct Output {
-        let dataIsready: Driver<Bool>
+        let dataIsReady: Driver<Bool>
     }
     
     private let dataProvider: ConfigurationDataProvider
@@ -32,7 +32,7 @@ class RedirectViewModel: ViewModelType {
             .map { _ in true }
             .asDriver(onErrorJustReturn: false)
             .startWith(false)
-        return Output(dataIsready: input.load.flatMapLatest { loader })
+        return Output(dataIsReady: input.load.flatMapLatest { loader })
     }
     
     private func configurationLoaded(_ config: APIConfiguration) {

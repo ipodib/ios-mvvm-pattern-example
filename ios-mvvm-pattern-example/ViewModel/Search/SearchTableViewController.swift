@@ -50,8 +50,7 @@ extension SearchTableViewController: Bindable {
         let output = viewModel.transform(input: input)
         
         output.results
-            .asObservable()
-            .bind(to: tableView.rx
+            .drive(tableView.rx
                 .items(cellIdentifier: SearchResultTableViewCell.cellIdentifier,
                        cellType: SearchResultTableViewCell.self)) { (row, element, cell) in
                         cell.configure(element)

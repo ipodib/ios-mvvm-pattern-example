@@ -39,7 +39,7 @@ extension RedirectViewController: Bindable {
     func bind() {
         let input = RedirectViewModel.Input(load: Driver.just(()))
         let output = viewModel.transform(input: input)
-        output.dataIsready
+        output.dataIsReady
             .do(onNext: navigateToNextScreen(_:))
             .drive()
             .disposed(by: disposeBag)
